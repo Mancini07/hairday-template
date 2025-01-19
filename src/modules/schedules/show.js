@@ -16,7 +16,6 @@ export function scheduleShow({dailySchedule}) {
         
         dailySchedule.forEach((schedule) => {
             //cria elementos html para lista ul
-            console.log(schedule)
             const item = document.createElement("li")
             const time = document.createElement("strong")
             const name = document.createElement("span")
@@ -33,17 +32,18 @@ export function scheduleShow({dailySchedule}) {
             //adiciona os elementos dentro da lista
             item.append(time,name, cancelIcon)
 
-            //adiciona os elementos dentro da lista pai
+            //converte a hora em numero
             const hours = dayjs(schedule.when).hour()
-            console.log(hours)
+            
+            //adiciona os elementos dentro da lista pai
             if (hours <= 12 ) {
-                periodMorning.append(item)
+                periodMorning.appendChild(item)
             }
             else if(hours >= 13 && hours <= 18){
-                periodAfternoon.append(item)
+                periodAfternoon.appendChild(item)
             }
-            else if( hours >= 19) {
-                periodNight.append(item)
+            else{
+                periodNight.appendChild(item)
             }
         })
 
